@@ -172,10 +172,12 @@ function functionRetrive1(){
           var content_jobID = document.createTextNode("Job ID: " + x.jobID);
           var content_jobTitle = document.createTextNode("Job Title: " + x.jobTitle);
           var content_jobDescription = document.createTextNode("Job Description: " + x.jobDescription);
+          var content_location = document.createTextNode("Job Location: " + x.address.city + " " + x.address.state);
           var parentDiv = document.createElement('button');
           var childDiv = document.createElement('div');
           var grandChildDiv1 = document.createElement('p');
           var grandChildDiv2 = document.createElement('p');
+          var grandChildDiv3 = document.createElement('p');
 
           for(var i=0; i < 2; i++){
             parentDiv.className = 'collapsible';
@@ -184,8 +186,10 @@ function functionRetrive1(){
               childDiv.className = 'content';
               grandChildDiv1.appendChild(content_jobTitle);
               grandChildDiv2.appendChild(content_jobDescription);
+              grandChildDiv3.appendChild(content_location);
               childDiv.appendChild(grandChildDiv1);
               childDiv.appendChild(grandChildDiv2);
+              childDiv.appendChild(grandChildDiv3);
             }
             parentDiv.appendChild(childDiv);
             toAdd.appendChild(parentDiv);
