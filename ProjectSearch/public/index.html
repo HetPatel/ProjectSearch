@@ -1,0 +1,192 @@
+<html>
+<head>
+	<!-- Firebase Script -->
+  <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js" />
+  <script type = "text/javascript" src = "js/index.js"></script>
+  <script type = "text/javascript" src = "js/registration.js"></script>
+  <script type = "text/javascript" src = "js/location.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/register.css">
+  <link rel="stylesheet" type="text/css" href="css/location.css">
+  <link rel="stylesheet" type="text/css" href="css/accordion.css">
+
+</head>
+<body>
+  <div class="container">
+	<div class="row">
+		<section>
+        <div class="wizard">
+            <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+
+                    <li role="presentation" class="active">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-folder-open"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="disabled">
+                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-picture"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="disabled">
+                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-ok"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <form role="form">
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="step1">
+                        <h3>Step 1</h3>
+                        <p>
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-sm-4">
+                                <div class="input-group" class="col-sm-4">
+                                  <span class="input-group-addon">Job ID</span>
+                                </div>
+                              </div>
+                              <div class="col-sm-4">
+                                <div class="input-group" class="col-sm-4">
+                                  <span class="input-group-addon">Number</span>
+                                  <input id="job_id" type="number" class="form-control" name="job_id" placeholder="Job ID">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-4">
+                                <div class="input-group" class="col-sm-4">
+                                  <span class="input-group-addon">Job Title</span>
+                                </div>
+                              </div>
+                              <div class="col-sm-4">
+                                <div class="input-group" class="col-sm-4">
+                                  <span class="input-group-addon">Text</span>
+                                  <input id="job_Title" type="text" class="form-control" name="job_Title" placeholder="Job Title">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-4">
+                                <div class="input-group" class="col-sm-4">
+                                  <span class="input-group-addon">Job Description</span>
+                                </div>
+                              </div>
+                              <div class="col-sm-4">
+                                <div class="input-group" class="col-sm-4">
+                                  <textarea name="job_Description" rows="20" cols="80" id="job_Description" onfocus="setbg('#e5fff3');" onblur="setbg('white')" placeholder="Enter Job Description here..."></textarea>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-4">
+                                <div class="input-group" class="col-sm-4">
+                                  <span class="input-group-addon">Location</span>
+                                </div>
+                              </div>
+                              <div class="col-sm-4">
+                                <div class="input-group" class="col-sm-4">
+                                  <div id="locationField" name="locationField">
+                                    <input id="autocomplete" name="autocomplete" placeholder="Enter your address"
+                                           onFocus="geolocate()" type="text"></input>
+                                  </div>
+                                  <div id="address_div">
+                                    <table id="address">
+                                      <tr>
+                                        <td class="label">Street address</td>
+                                        <td class="slimField"><input class="field" id="street_number"
+                                              disabled="true"></input></td>
+                                        <td class="wideField" colspan="2"><input class="field" id="route"
+                                              disabled="true"></input></td>
+                                      </tr>
+                                      <tr>
+                                        <td class="label">City</td>
+                                        <!-- Note: Selection of address components in this example is typical.
+                                             You may need to adjust it for the locations relevant to your app. See
+                                             https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+                                        -->
+                                        <td class="wideField" colspan="3"><input class="field" id="locality"
+                                              disabled="true"></input></td>
+                                      </tr>
+                                      <tr>
+                                        <td class="label">State</td>
+                                        <td class="slimField"><input class="field"
+                                              id="administrative_area_level_1" disabled="true"></input></td>
+                                        <td class="label">Zip code</td>
+                                        <td class="wideField"><input class="field" id="postal_code"
+                                              disabled="true"></input></td>
+                                      </tr>
+                                      <tr>
+                                        <td class="label">Country</td>
+                                        <td class="wideField" colspan="3"><input class="field"
+                                              id="country" disabled="true"></input></td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                              		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKR3s0zH_TQyGXRlfa5w3jDFBWoLpIdH8&libraries=places&callback=initAutocomplete" async defer></script>
+                                </div>
+                              </div>
+                            </div>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-primary next-step" onclick="functionSubmit()">Save and continue</button></li>
+                            <li><button type="button" class="btn btn-primary next-step" onclick="functionRetrive1()">Retrive</button></li>
+                            <div class="row">
+                              <div class="col-sm-4">
+                                <div class="input-group" class="col-sm-4">
+                                  <span class="input-group-addon">Job ID</span>
+                                </div>
+                              </div>
+                              <div class="col-sm-4">
+                                <div class="input-group" class="col-sm-4">
+                                  <span class="input-group-addon">Number</span>
+                                  <input id="retrive_job_id" disabled="true" type="number" class="form-control" name="retrive_job_id" placeholder="Job ID">
+                                </div>
+                              </div>
+                            </div>
+                            <div>
+                              <table border='1' id='mytable'>
+                                <tbody></tbody>
+                              </table>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+   </div>
+</div>
+<!--<div id="populateJobID"></div>
+<span id="fooBar">&nbsp;</span>
+<div id="populateJobTitle"></div> <br />
+<div id="populateJobDescription"></div> <br />
+<div id="populateStreetNumber"></div>
+<div id="populateStreetName"></div>
+<div id="populateCity"></div>
+<div id="populateState"></div>
+<div id="populateZip"></div>
+<div id="populateCountry"></div>-->
+</body>
+</html>
