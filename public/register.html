@@ -4,14 +4,18 @@
   <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
 	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
+  <script src="https://unpkg.com/select-pure@latest/dist/bundle.min.js"></script>
   <script type = "text/javascript" src = "js/index.js"></script>
   <script type = "text/javascript" src = "js/registration.js"></script>
   <script type = "text/javascript" src = "js/location.js"></script>
   <script type = "text/javascript" src = "js/bootstrap.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/register.css">
   <link rel="stylesheet" type="text/css" href="css/location.css">
   <link rel="stylesheet" type="text/css" href="css/accordion.css">
+  <link rel="stylesheet" type="text/css" href="css/autoselect.css">
 
 </head>
 <body>
@@ -159,17 +163,7 @@
                             <li><button type="button" class="btn btn-primary next-step" onclick="functionSubmit()">Save and continue</button></li>
                             <li><button type="button" class="btn btn-primary next-step" onclick="functionRetrive1()">Retrive</button></li>
                             <div class="row">
-                              <div class="col-sm-4">
-                                <div class="input-group" class="col-sm-4">
-                                  <span class="input-group-addon">Job ID</span>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div class="input-group" class="col-sm-4">
-                                  <span class="input-group-addon">Number</span>
-                                  <input id="retrive_job_id" disabled="true" type="number" class="form-control" name="retrive_job_id" placeholder="Job ID">
-                                </div>
-                              </div>
+
                             </div>
                             <div>
                               <table border='1' id='mytable'>
@@ -194,5 +188,14 @@
 <div id="populateState"></div>
 <div id="populateZip"></div>
 <div id="populateCountry"></div>-->
+<div class="select-wrapper">
+  <h1>PureSelect</h1>
+
+  <h3>Autocomplete:</h3>
+  <span class="autocomplete-select"></span>
+</div>
+
+<script src = "js/bundle.min.js"></script>
+<script type = "text/javascript" src = "js/autoselect.js"></script>
 </body>
 </html>

@@ -32,6 +32,10 @@ var autocomplete = new SelectPure(".autocomplete-select", {
       label: "Spaghetti",
       value: "sp",
     },
+    {
+      label: "My Value HET",
+      value: "hp",
+    },
   ],
   value: ["sp"],
   multiple: true,
