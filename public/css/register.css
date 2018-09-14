@@ -149,3 +149,6 @@ textarea#styled {
 	background-position: bottom right;
 	background-repeat: no-repeat;
 }
+.navBar {
+  float: right;
+}

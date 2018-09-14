@@ -28,12 +28,20 @@
 //       console.log('Signout Failed')
 //    });
 // }
+
 //Handle Account Status
 firebase.auth().onAuthStateChanged(user => {
   if(!user) {
     window.location = 'index.html'; //If User is not logged in, redirect to login page
   }
+  document.getElementById("userName").innerText=user.displayName;
+
 });
+
+// //Account info
+// var cuurentUser = firebase.auth().currentUser;
+// console.log(currentUser);
+
 $(document).ready(function () {
     //Initialize tooltips
     $('.nav-tabs > li a[title]').tooltip();
@@ -125,62 +133,6 @@ function setbg(color)
 }
 
 var x;
-
-function functionRetrive(){
-  ref.child("jobs").orderByChild("jobsID").once("value", function(snapshot) {
-    var jobData = snapshot.val();
-    for (var item in jobData) {
-      x = jobData[item];
-
-      var toAdd = document.createDocumentFragment();
-      var content_jobID = document.createTextNode("Job ID: " + x.jobID);
-      var content_jobTitle = document.createTextNode("Job Title: " + x.jobTitle);
-      var content_jobDescription = document.createTextNode("Job Description: " + x.jobDescription);
-      var parentDiv = document.createElement('button');
-      var childDiv = document.createElement('div');
-      var grandChildDiv1 = document.createElement('p');
-      var grandChildDiv2 = document.createElement('p');
-
-      for(var i=0; i < 2; i++){
-        parentDiv.className = 'collapsible';
-        parentDiv.appendChild(content_jobID);
-        if(content_jobID){
-          childDiv.className = 'content';
-          grandChildDiv1.appendChild(content_jobTitle);
-          grandChildDiv2.appendChild(content_jobDescription);
-          childDiv.appendChild(grandChildDiv1);
-          childDiv.appendChild(grandChildDiv2);
-        }
-        parentDiv.appendChild(childDiv);
-        toAdd.appendChild(parentDiv);
-        toAdd.appendChild(childDiv);
-      }
-      document.body.appendChild(toAdd);
-
-      /* var content_streetNumber = document.createTextNode(x.address.streetNumber);
-      // var content_jobID = document.createTextNode(x.jobID);
-      // var content_jobID = document.createTextNode(x.jobID);
-      // var content_jobID = document.createTextNode(x.jobID);
-      // var content_jobID = document.createTextNode(x.jobID);
-      // var content_jobID = document.createTextNode(x.jobID);
-      div.appendChild(content_jobID);
-      div.appendChild(content_jobTitle);
-      div.appendChild(content_jobDescription);
-
-      var jobID_Div = document.getElementById("populateJobID");
-      var jobTitle_Div = document.getElementById("populateJobTitle");
-      var jobDescription_Div = document.getElementById("populateJobDescription");
-
-      document.body.insertBefore(div, jobID_Div);
-      document.body.insertBefore(div, jobTitle_Div);
-      document.body.insertBefore(div, jobDescription_Div);*/
-
-
-      //document.getElementById("retrive_job_id_table").innerHTML=x.jobID;
-      //document.getElementById('retrive_job_id').value=x.jobID;
-    }
-  });
-}
 
 function functionRetrive1(){
   var coll = document.getElementsByClassName("collapsible");
