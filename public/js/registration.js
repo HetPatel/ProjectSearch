@@ -34,7 +34,8 @@ firebase.auth().onAuthStateChanged(user => {
   if(!user) {
     window.location = 'index.html'; //If User is not logged in, redirect to login page
   }
-  document.getElementById("userName").innerText=user.displayName;
+  // console.log(user);
+  document.getElementById("userName").innerText=getPublisherInfo().displayName;
 
 });
 
@@ -102,6 +103,9 @@ function functionSubmit(evt)
   txt_State = document.getElementById('administrative_area_level_1').value;
   txt_Zip = document.getElementById('postal_code').value;
   txt_Country = document.getElementById('country').value;
+  pubDate = getCurrentDate();
+  pubTime = getCurrentTime();
+
   jobs.once('value', function(snapshot) {
         if (!snapshot.hasChild(job_id)) {
             jobs.child(job_id).set({
@@ -113,7 +117,11 @@ function functionSubmit(evt)
                 city: txt_City,
                 state: txt_State,
                 zip: txt_Zip,
-                country: txt_Country}
+                country: txt_Country},
+              "publishedDate": pubDate,
+              "publishedTime": pubTime,
+              "publishedBy": getPublisherInfo().displayName,
+              "publisherEmail": getPublisherInfo().email
             });
         }
         else {
@@ -147,11 +155,13 @@ function functionRetrive1(){
           var content_jobTitle = document.createTextNode("Job Title: " + x.jobTitle);
           var content_jobDescription = document.createTextNode("Job Description: " + x.jobDescription);
           var content_location = document.createTextNode("Job Location: " + x.address.city + " " + x.address.state);
+          var publishInfo = document.createTextNode("Published By: " + x.publishedBy + " on " + x.publishedDate);
           var parentDiv = document.createElement('button');
           var childDiv = document.createElement('div');
           var grandChildDiv1 = document.createElement('p');
           var grandChildDiv2 = document.createElement('p');
           var grandChildDiv3 = document.createElement('p');
+          var grandChildDiv4 = document.createElement('p');
 
           for(var i=0; i < 2; i++){
             parentDiv.className = 'collapsible';
@@ -161,9 +171,11 @@ function functionRetrive1(){
               grandChildDiv1.appendChild(content_jobTitle);
               grandChildDiv2.appendChild(content_jobDescription);
               grandChildDiv3.appendChild(content_location);
+              grandChildDiv4.appendChild(publishInfo);
               childDiv.appendChild(grandChildDiv1);
               childDiv.appendChild(grandChildDiv2);
               childDiv.appendChild(grandChildDiv3);
+              childDiv.appendChild(grandChildDiv4);
             }
             parentDiv.appendChild(childDiv);
             toAdd.appendChild(parentDiv);
@@ -183,4 +195,33 @@ function functionRetrive1(){
           });
         }
   });
+}
+
+function getCurrentDate(){
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if(dd<10) {
+      dd = '0'+dd
+  }
+  if(mm<10) {
+      mm = '0'+mm
+  }
+  today = mm + '/' + dd + '/' + yyyy;
+
+  return today;
+}
+
+function getCurrentTime(){
+  var d = new Date();
+  var currentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+
+  return currentTime;
+}
+
+function getPublisherInfo(){
+  let userInfo = firebase.auth().currentUser;
+  return userInfo;
 }
