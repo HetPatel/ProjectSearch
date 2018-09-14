@@ -1,3 +1,39 @@
+// var provider = new firebase.auth.GoogleAuthProvider();
+//
+// function googleSignin() {
+//    firebase.auth()
+//
+//    .signInWithPopup(provider).then(function(result) {
+//       var token = result.credential.accessToken;
+//       var user = result.user;
+//
+//       window.navigate("register.html");
+//       console.log(token)
+//       console.log(user)
+//    }).catch(function(error) {
+//       var errorCode = error.code;
+//       var errorMessage = error.message;
+//
+//       console.log(error.code)
+//       console.log(error.message)
+//    });
+// }
+//
+// function googleSignout() {
+//    firebase.auth().signOut()
+//
+//    .then(function() {
+//       console.log('Signout Succesfull')
+//    }, function(error) {
+//       console.log('Signout Failed')
+//    });
+// }
+//Handle Account Status
+firebase.auth().onAuthStateChanged(user => {
+  if(!user) {
+    window.location = 'index.html'; //If User is not logged in, redirect to login page
+  }
+});
 $(document).ready(function () {
     //Initialize tooltips
     $('.nav-tabs > li a[title]').tooltip();
@@ -38,20 +74,6 @@ function setbg(color)
 {
 document.getElementById("styled").style.background=color
 }
-
-var firebaseConfig = {
-  apiKey: "AIzaSyCpLtjTHX0IdajdrLQNHB--8jpt_fW6BfQ",
-  authDomain: "projectsearch-f5355.firebaseapp.com",
-  databaseURL: "https://projectsearch-f5355.firebaseio.com",
-  projectId: "projectsearch-f5355",
-  storageBucket: "projectsearch-f5355.appspot.com",
-  messagingSenderId: "196882104446"
-};
-
-//Initialize APP
-var initializeApp = firebase.initializeApp(firebaseConfig);
-
-
 // Create a root reference
 var ref = firebase.database().ref();
 var storageRef = firebase.storage().ref();
