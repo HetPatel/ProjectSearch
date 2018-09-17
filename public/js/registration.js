@@ -1,33 +1,3 @@
-// var provider = new firebase.auth.GoogleAuthProvider();
-//
-// function googleSignin() {
-//    firebase.auth()
-//
-//    .signInWithPopup(provider).then(function(result) {
-//       var token = result.credential.accessToken;
-//       var user = result.user;
-//
-//       window.navigate("register.html");
-//       console.log(token)
-//       console.log(user)
-//    }).catch(function(error) {
-//       var errorCode = error.code;
-//       var errorMessage = error.message;
-//
-//       console.log(error.code)
-//       console.log(error.message)
-//    });
-// }
-//
-// function googleSignout() {
-//    firebase.auth().signOut()
-//
-//    .then(function() {
-//       console.log('Signout Succesfull')
-//    }, function(error) {
-//       console.log('Signout Failed')
-//    });
-// }
 
 //Handle Account Status
 firebase.auth().onAuthStateChanged(user => {
@@ -38,9 +8,6 @@ firebase.auth().onAuthStateChanged(user => {
 
 });
 
-// //Account info
-// var cuurentUser = firebase.auth().currentUser;
-// console.log(currentUser);
 
 $(document).ready(function () {
     //Initialize tooltips
@@ -80,8 +47,9 @@ function prevTab(elem) {
 
 function setbg(color)
 {
-document.getElementById("styled").style.background=color
+  document.getElementById("styled").style.background=color
 }
+
 // Create a root reference
 var ref = firebase.database().ref();
 var storageRef = firebase.storage().ref();
@@ -120,7 +88,8 @@ function functionSubmit(evt)
               "publishedDate": pubDate,
               "publishedTime": pubTime,
               "publishedBy": getPublisherInfo().displayName,
-              "publisherEmail": getPublisherInfo().email
+              "publisherEmail": getPublisherInfo().email,
+              "jobTypes": getJobTypes()
             });
         }
         else {
@@ -155,12 +124,14 @@ function functionRetrive1(){
           var content_jobDescription = document.createTextNode("Job Description: " + x.jobDescription);
           var content_location = document.createTextNode("Job Location: " + x.address.city + " " + x.address.state);
           var publishInfo = document.createTextNode("Published By: " + x.publishedBy + " on " + x.publishedDate);
+          var jobTypes = document.createTextNode("Job Type: " + x.jobTypes);
           var parentDiv = document.createElement('button');
           var childDiv = document.createElement('div');
           var grandChildDiv1 = document.createElement('p');
           var grandChildDiv2 = document.createElement('p');
           var grandChildDiv3 = document.createElement('p');
           var grandChildDiv4 = document.createElement('p');
+          var grandChildDiv5 = document.createElement('p');
 
           for(var i=0; i < 2; i++){
             parentDiv.className = 'collapsible';
@@ -171,10 +142,12 @@ function functionRetrive1(){
               grandChildDiv2.appendChild(content_jobDescription);
               grandChildDiv3.appendChild(content_location);
               grandChildDiv4.appendChild(publishInfo);
+              grandChildDiv5.appendChild(jobTypes);
               childDiv.appendChild(grandChildDiv1);
               childDiv.appendChild(grandChildDiv2);
               childDiv.appendChild(grandChildDiv3);
               childDiv.appendChild(grandChildDiv4);
+              childDiv.appendChild(grandChildDiv5);
             }
             parentDiv.appendChild(childDiv);
             toAdd.appendChild(parentDiv);
@@ -199,7 +172,7 @@ function functionRetrive1(){
 function getCurrentDate(){
   var today = new Date();
   var dd = today.getDate();
-  var mm = today.getMonth()+1; //January is 0!
+  var mm = today.getMonth()+1; //January is
   var yyyy = today.getFullYear();
 
   if(dd<10) {
@@ -223,4 +196,14 @@ function getCurrentTime(){
 function getPublisherInfo(){
   let userInfo = firebase.auth().currentUser;
   return userInfo;
+}
+
+function getJobTypes(){
+  totalJobTypes = document.getElementsByClassName('select-pure__label')[0].children.length;
+  jobTypes = document.getElementsByClassName('select-pure__label')[0].children;
+  var types = [];
+  for (var i = 0; i < totalJobTypes; i++) {
+    types.push(jobTypes[i].innerText);
+  }
+  return types;
 }

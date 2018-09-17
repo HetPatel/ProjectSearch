@@ -1,43 +1,51 @@
 var autocomplete = new SelectPure(".autocomplete-select", {
   options: [
     {
-      label: "Barbina",
-      value: "ba",
+      label: "Full Time",
+      value: "ft",
     },
     {
-      label: "Bigoli",
-      value: "bg",
+      label: "Part Time",
+      value: "pt",
     },
     {
-      label: "Bucatini",
-      value: "bu",
+      label: "Temporary",
+      value: "te",
     },
     {
-      label: "Busiate",
-      value: "bus",
+      label: "Contract",
+      value: "ct",
     },
     {
-      label: "Capellini",
-      value: "cp",
+      label: "Internship",
+      value: "in",
     },
     {
-      label: "Fedelini",
-      value: "fe",
+      label: "Commission",
+      value: "cm",
     },
     {
-      label: "Maccheroni",
-      value: "ma",
+      label: "Volunteer",
+      value: "vo",
     },
     {
-      label: "Spaghetti",
-      value: "sp",
+      label: "Casual",
+      value: "ca",
     },
     {
-      label: "My Value HET",
-      value: "hp",
+      label: "Freelance",
+      value: "fl",
+    },
+    {
+      label: "Permanent",
+      value: "pe",
+    },
+    {
+      label: "Apprenticeship",
+      value: "ap",
     },
   ],
-  value: ["sp"],
+  value: ["pe"],
   multiple: true,
   autocomplete: true,
   icon: "fa fa-times",
