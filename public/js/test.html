@@ -1,20 +1,19 @@
-<!doctype html>
 <html>
-  <head>
-    <title>SelectPure example</title>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="test.css">
-  </head>
-  <body>
-    <div class="select-wrapper">
-      <h1>PureSelect</h1>
-
-      <h3>Autocomplete:</h3>
-      <span class="autocomplete-select"></span>
-    </div>
-
-    <script src="bundle.min.js"></script>
-    <script type = "text/javascript" src = "test.js"></script>
-  </body>
+<head>
+  <script type="text/javascript" src="test.js"></script>
+</head>
+<body>
+  <form onsubmit="return getSelectedValues()">
+        <label>Multi Select dropdown </label>
+        <select id="dd1" multiple="true">
+            <option value="0">India</option>
+            <option value="1">Pakistan</option>
+            <option value="2">China</option>
+            <option value="3">Sri-Lanka</option>
+            <option value="4">Bangladesh</option>
+        </select>
+        <br />
+        <input type="submit" value="Submit" />
+    </form>
+</body>
 </html>

@@ -1,41 +1,12 @@
-var autocomplete = new SelectPure(".autocomplete-select", {
-  options: [
-    {
-      label: "Barbina",
-      value: "ba",
-    },
-    {
-      label: "Bigoli",
-      value: "bg",
-    },
-    {
-      label: "Bucatini",
-      value: "bu",
-    },
-    {
-      label: "Busiate",
-      value: "bus",
-    },
-    {
-      label: "Capellini",
-      value: "cp",
-    },
-    {
-      label: "Fedelini",
-      value: "fe",
-    },
-    {
-      label: "Maccheroni",
-      value: "ma",
-    },
-    {
-      label: "Spaghetti",
-      value: "sp",
-    },
-  ],
-  value: ["sp"],
-  multiple: true,
-  autocomplete: true,
-  icon: "fa fa-times",
-  onChange: value => { console.log(value); },
-});
+function getSelectedValues()
+{
+            var dropDown = document.getElementById('dd1'), countryArray = [], i;
+            for (i = 0; i < dropDown.options.length ; i += 1) {
+                if (dropDown.options[i].selected) {
+                    //countryArray.push( dropDown.options[i].value); //If you need only values
+                    countryArray.push({ Name: dropDown.options[i].text, Value: dropDown.options[i].value });
+                }
+            }
+            console.log(countryArray);
+            return false;
+}

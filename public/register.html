@@ -1,14 +1,17 @@
 <html>
+
 <head>
-	<!-- Firebase Script -->
   <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
-	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
   <script src="https://unpkg.com/select-pure@latest/dist/bundle.min.js"></script>
-  <script type = "text/javascript" src = "js/index.js"></script>
-  <script type = "text/javascript" src = "js/registration.js"></script>
-  <script type = "text/javascript" src = "js/location.js"></script>
-  <script type = "text/javascript" src = "js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/registration.js"></script>
+  <script type="text/javascript" src="js/location.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/navBar.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.jquery.js"></script>
+  <script type="text/javascript" src="js/navBar.jquery.js"></script>
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -16,125 +19,159 @@
   <link rel="stylesheet" type="text/css" href="css/location.css">
   <link rel="stylesheet" type="text/css" href="css/accordion.css">
   <link rel="stylesheet" type="text/css" href="css/autoselect.css">
-
+  <link rel="stylesheet" type="text/css" href="css/navBar.css">
+  <link rel="stylesheet" type="text/css" href="css/multiple-select.css" />
 </head>
+
 <body>
+  <section style="background:#efefe9;">
+    <div class="container">
+      <div class="row">
+        <div class="board">
+          <!-- <h2>Welcome to IGHALO!<sup>™</sup></h2>-->
+          <div class="board-inner">
+            <ul class="nav nav-tabs" id="myTab">
+              <div class="liner"></div>
+              <li class="active">
+                <a href="#home" data-toggle="tab" title="welcome">
+                      <span class="round-tabs one">
+                              <i class="glyphicon glyphicon-home"></i>
+                      </span>
+                  </a></li>
 
-<div id="navBar" class="navBar">
-  <div id="userName"></div>
-  <button onclick = "googleSignout()">Google Signout</button>
-</div>
+              <li><a href="#profile" data-toggle="tab" title="profile">
+                     <span class="round-tabs two">
+                         <i class="glyphicon glyphicon-user"></i>
+                     </span>
+           </a>
+              </li>
+              <!--
+                 <li><a href="#messages" data-toggle="tab" title="bootsnipp goodies">
+                     <span class="round-tabs three">
+                          <i class="glyphicon glyphicon-gift"></i>
+                     </span> </a>
+                     </li>
 
-  <div class="container">
-	<div class="row">
-		<section>
-        <div class="wizard">
-            <div class="wizard-inner">
-                <div class="connecting-line"></div>
-                <ul class="nav nav-tabs" role="tablist">
+                     <li><a href="#settings" data-toggle="tab" title="blah blah">
+                         <span class="round-tabs four">
+                              <i class="glyphicon glyphicon-comment"></i>
+                         </span>
+                     </a></li>
+                   -->
+              <li><a href="#doner" data-toggle="tab" title="completed">
+                         <span class="round-tabs five">
+                              <i class="glyphicon glyphicon-ok"></i>
+                         </span> </a>
+              </li>
 
-                    <li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-folder-open"></i>
-                            </span>
-                        </a>
-                    </li>
+            </ul>
+          </div>
 
-                    <li role="presentation" class="disabled">
-                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-pencil"></i>
-                            </span>
-                        </a>
-                    </li>
-                    <li role="presentation" class="disabled">
-                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-picture"></i>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li role="presentation" class="disabled">
-                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-ok"></i>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
+          <div class="tab-content">
+            <div style="text-align: right;">
+              <div id="userName"></div>
+              <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-log-out" onclick="googleSignout()">
+                Sign out
+              </button>
             </div>
-
-            <form role="form">
-                <div class="tab-content">
-                    <div class="tab-pane active" role="tabpanel" id="step1">
-                        <h3>Step 1</h3>
-                        <p>
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-sm-4">
-                                <div class="input-group" class="col-sm-4">
-                                  <span class="input-group-addon">Job ID</span>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div class="input-group" class="col-sm-4">
-                                  <span class="input-group-addon">Number</span>
-                                  <input id="job_id" type="number" class="form-control" name="job_id" placeholder="Job ID">
-                                </div>
-                              </div>
+            <div class="tab-pane fade in active" id="home">
+              <h3 class="head text-center">Upload Job Information</h3>
+              <p class="narrow text-center">
+                <form role="form">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <div class="input-group" class="col-sm-4">
+                          <span class="input-group-addon">Job ID</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="input-group" class="col-sm-4">
+                          <span class="input-group-addon">Number</span>
+                          <input id="job_id" type="number" class="form-control" name="job_id" placeholder="Job ID">
+                                                </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="input-group" class="col-sm-4">
+                            <span class="input-group-addon">Job Title</span>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="input-group" class="col-sm-4">
+                            <span class="input-group-addon">Text</span>
+                            <input id="job_Title" type="text" class="form-control" name="job_Title" placeholder="Job Title">
+                                                </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <div class="input-group" class="col-sm-4">
+                              <span class="input-group-addon">Job Description</span>
                             </div>
-                            <div class="row">
-                              <div class="col-sm-4">
-                                <div class="input-group" class="col-sm-4">
-                                  <span class="input-group-addon">Job Title</span>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div class="input-group" class="col-sm-4">
-                                  <span class="input-group-addon">Text</span>
-                                  <input id="job_Title" type="text" class="form-control" name="job_Title" placeholder="Job Title">
-                                </div>
-                              </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="input-group" class="col-sm-4">
+                              <textarea name="job_Description" rows="10" cols="40" id="job_Description" onfocus="setbg('#e5fff3');" onblur="setbg('white')" placeholder="Enter Job Description here..."></textarea>
                             </div>
-                            <div class="row">
-                              <div class="col-sm-4">
-                                <div class="input-group" class="col-sm-4">
-                                  <span class="input-group-addon">Job Description</span>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div class="input-group" class="col-sm-4">
-                                  <textarea name="job_Description" rows="20" cols="80" id="job_Description" onfocus="setbg('#e5fff3');" onblur="setbg('white')" placeholder="Enter Job Description here..."></textarea>
-                                </div>
-                              </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <div class="input-group" class="col-sm-4">
+                              <span class="input-group-addon">Job Type</span>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                  <div class="input-group" class="col-sm-4">
-                                    <span class="input-group-addon">Job Type</span>
-                                  </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <span class="autocomplete-select"></span>
-                                <script src = "js/bundle.min.js"></script>
-                                <script type = "text/javascript" src = "js/autoselect.js"></script>
-                              </div>
-                            </div>
+                          </div>
+                          <div class="col-sm-4">
                             <div>
-                              <div class="row">
-                                <div class="col-sm-4">
-                                  <div class="input-group" class="col-sm-4">
-                                    <span class="input-group-addon">Salary</span>
-                                  </div>
-                                </div>
-                                <div class="col-sm-4">
-                                  <div class="input-group" class="col-sm-4">
-                                    <span class="input-group-addon">$</span>
-                                    <input type="number" value="1000" min="0" step="1000" class="form-control currency" id="currency" />
-                                  </div>
-                                </div>
+
+                              <div class="form-group">
+                                  <select id="ms" multiple="multiple">
+                                    <option value="1">Full Time</option>
+                                    <option value="2">Part Time</option>
+                                    <option value="3">Temporary</option>
+                                    <option value="4">Contract</option>
+                                    <option value="5">Internship</option>
+                                    <option value="6">Volunteer</option>
+                                    <option value="7">Casual</option>
+                                    <option value="8">Freelance</option>
+                                    <option value="9">Permanent</option>
+                                  </select>
+                              </div>
+                              <!--<form>
+                                    <select id="jobTypesSelect" multiple="true">
+                                        <option value="0">Full Time</option>
+                                        <option value="1">Part Time</option>
+                                        <option value="2">Temporary</option>
+                                        <option value="3">Contract</option>
+                                        <option value="4">Internship</option>
+                                        <option value="5">Volunteer</option>
+                                        <option value="6">Casual</option>
+                                        <option value="7">Freelance</option>
+                                        <option value="8">Permanent</option>
+                                    </select>
+                                    <br />
+                                </form> -->
+                            </div>
+                            <!--<span class="autocomplete-select"></span>
+                            <script src="js/bundle.min.js"></script>
+                            <script type="text/javascript" src="js/autoselect.js"></script>-->
+                          </div>
+                        </div>
+                        <div>
+                          <div class="row">
+                            <div class="col-sm-4">
+                              <div class="input-group" class="col-sm-4">
+                                <span class="input-group-addon">Salary</span>
+                              </div>
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="input-group" class="col-sm-4">
+                                <span class="input-group-addon">$</span>
+                                <input type="number" value="1000" min="0" step="1000" class="form-control currency" id="currency" />
+                                                  </div>
+                              </div>
                             </div>
                             <div class="row">
                               <div class="col-sm-4">
@@ -146,73 +183,218 @@
                                 <div class="input-group" class="col-sm-4">
                                   <div id="locationField" name="locationField">
                                     <input id="autocomplete" name="autocomplete" placeholder="Enter your address"
-                                           onFocus="geolocate()" type="text"></input>
+                                                           onFocus="geolocate()" type="text"></input>
                                   </div>
                                   <div id="address_div">
                                     <table id="address">
                                       <tr>
                                         <td class="label">Street address</td>
                                         <td class="slimField"><input class="field" id="street_number"
-                                              disabled="true"></input></td>
+                                                              disabled="true"></input></td>
                                         <td class="wideField" colspan="2"><input class="field" id="route"
-                                              disabled="true"></input></td>
+                                                              disabled="true"></input></td>
                                       </tr>
                                       <tr>
                                         <td class="label">City</td>
                                         <!-- Note: Selection of address components in this example is typical.
-                                             You may need to adjust it for the locations relevant to your app. See
-                                             https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
-                                        -->
+                                                             You may need to adjust it for the locations relevant to your app. See
+                                                             https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+                                                        -->
                                         <td class="wideField" colspan="3"><input class="field" id="locality"
-                                              disabled="true"></input></td>
+                                                              disabled="true"></input></td>
                                       </tr>
                                       <tr>
                                         <td class="label">State</td>
                                         <td class="slimField"><input class="field"
-                                              id="administrative_area_level_1" disabled="true"></input></td>
+                                                              id="administrative_area_level_1" disabled="true"></input></td>
                                         <td class="label">Zip code</td>
                                         <td class="wideField"><input class="field" id="postal_code"
-                                              disabled="true"></input></td>
+                                                              disabled="true"></input></td>
                                       </tr>
                                       <tr>
                                         <td class="label">Country</td>
                                         <td class="wideField" colspan="3"><input class="field"
-                                              id="country" disabled="true"></input></td>
+                                                              id="country" disabled="true"></input></td>
                                       </tr>
                                     </table>
                                   </div>
-                              		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKR3s0zH_TQyGXRlfa5w3jDFBWoLpIdH8&libraries=places&callback=initAutocomplete" async defer></script>
+                                  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKR3s0zH_TQyGXRlfa5w3jDFBWoLpIdH8&libraries=places&callback=initAutocomplete" async defer></script>
                                 </div>
                               </div>
                             </div>
-                        <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-primary next-step" onclick="functionSubmit()">Save and continue</button></li>
-                            <li><button type="button" class="btn btn-primary next-step" onclick="functionRetrive1()">Retrive</button></li>
-                            <div class="row">
+                            <!--<ul class="list-inline pull-right">
+                                            <li><button type="button" onclick="functionRetrive1()">Retrive</button></li>
+                                        </ul>-->
+                          </div>
+                        </div>
+                </form>
 
-                            </div>
-                            <div>
-                              <table border='1' id='mytable'>
-                                <tbody></tbody>
-                              </table>
-                            </div>
-                        </ul>
+                <p class="text-center">
+                  <a class="btn btn-success btn-outline-rounded green" onclick="functionSubmit()"> Save <span class="glyphicon glyphicon-send"></span></a>
+                </p>
+            </div>
+            <div class="tab-pane fade" id="profile">
+              <h3 class="head text-center">Load/Edit Job Info</h3>
+              <form role="form">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="input-group" class="col-sm-4">
+                        <span class="input-group-addon">Job ID</span>
+                      </div>
                     </div>
-                </div>
-            </form>
+                    <div class="col-sm-4">
+                      <div class="input-group" class="col-sm-4">
+                        <span class="input-group-addon">Number</span>
+                        <input id="job_id2" type="number" class="form-control" name="job_id" placeholder="Job ID">
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <div class="input-group" class="col-sm-4">
+                          <span class="input-group-addon">Job Title</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="input-group" class="col-sm-4">
+                          <span class="input-group-addon">Text</span>
+                          <input id="job_Title2" type="text" class="form-control" name="job_Title" placeholder="Job Title" disabled="true">
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="input-group" class="col-sm-4">
+                            <span class="input-group-addon">Job Description</span>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="input-group" class="col-sm-4">
+                            <textarea name="job_Description" rows="10" cols="40" id="job_Description2" onfocus="setbg('#e5fff3');" onblur="setbg('white')" placeholder="Enter Job Description here..." disabled="true"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="input-group" class="col-sm-4">
+                            <span class="input-group-addon">Job Type</span>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <input id="job_Types2" type="text" class="form-control" disabled="true">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="input-group" class="col-sm-4">
+                            <span class="input-group-addon">Salary</span>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="input-group" class="col-sm-4">
+                            <span class="input-group-addon">$</span>
+                            <input type="number" min="0" step="1000" class="form-control currency" id="currency2" disabled="true" />
+                                                  </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <div class="input-group" class="col-sm-4">
+                              <span class="input-group-addon">Location</span>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="input-group" class="col-sm-4">
+                              <div id="address_div">
+                                <table id="address">
+                                  <tr>
+                                    <td class="label">Street address</td>
+                                    <td class="slimField"><input class="field" id="street_number2"
+                                                              disabled="true"></input></td>
+                                    <td class="wideField" colspan="2"><input class="field" id="route2"
+                                                              disabled="true"></input></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="label">City</td>
+                                    <!-- Note: Selection of address components in this example is typical.
+                                                             You may need to adjust it for the locations relevant to your app. See
+                                                             https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+                                                        -->
+                                    <td class="wideField" colspan="3"><input class="field" id="locality2"
+                                                              disabled="true"></input></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="label">State</td>
+                                    <td class="slimField"><input class="field"
+                                                              id="administrative_area_level_12" disabled="true"></input></td>
+                                    <td class="label">Zip code</td>
+                                    <td class="wideField"><input class="field" id="postal_code2"
+                                                              disabled="true"></input></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="label">Country</td>
+                                    <td class="wideField" colspan="3"><input class="field"
+                                                              id="country2" disabled="true"></input></td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+              </form>
+              <p class="text-center">
+                <a class="btn btn-success btn-outline-rounded green" onclick="functionLoad()">Load<span class="glyphicon glyphicon-send"></span></a>
+                <a class="btn btn-success btn-outline-rounded green" onclick="functionEdit()">Edit<span class="glyphicon glyphicon-send"></span></a>
+                <a class="btn btn-success btn-outline-rounded green" onclick="functionSubmitEdited()">Save<span class="glyphicon glyphicon-send"></span></a>
+              </p>
+            </div>
+            <div class="tab-pane fade" id="doner">
+              <div class="text-center">
+                <i class="img-intro icon-checkmark-circle"></i>
+              </div>
+              <h3 class="head text-center">thanks for staying tuned! <span style="color:#f48260;">♥</span> Het</h3>
+              <form id="retriveValueForm" name="FormToRetriveData">
+                <div id="container"></div>
+              </form>
+              <p class="text-center">
+                <a class="btn btn-success btn-outline-rounded green" onclick="functionRetrive1()">Retrive Values<span class="glyphicon glyphicon-send"></span></a>
+              </p>
+            </div>
+          </div>
+          <!--
+                      <div class="tab-pane fade" id="messages">
+                          <h3 class="head text-center">Bootsnipp goodies</h3>
+                          <p class="narrow text-center">
+                              Lorem ipsum dolor sit amet, his ea mollis fabellas principes. Quo mazim facilis tincidunt ut, utinam saperet facilisi an vim.
+                          </p>
+
+                          <p class="text-center">
+                    <a href="" class="btn btn-success btn-outline-rounded green"> start using bootsnipp <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+                </p>
+                      </div>
+                      <div class="tab-pane fade" id="settings">
+                          <h3 class="head text-center">Drop comments!</h3>
+                          <p class="narrow text-center">
+                              Lorem ipsum dolor sit amet, his ea mollis fabellas principes. Quo mazim facilis tincidunt ut, utinam saperet facilisi an vim.
+                          </p>
+
+                          <p class="text-center">
+                    <a href="" class="btn btn-success btn-outline-rounded green"> start using bootsnipp <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+                </p>
+              </div>-->
+
+          <div class="clearfix"></div>
         </div>
-    </section>
-   </div>
-</div>
-<!--<div id="populateJobID"></div>
-<span id="fooBar">&nbsp;</span>
-<div id="populateJobTitle"></div> <br />
-<div id="populateJobDescription"></div> <br />
-<div id="populateStreetNumber"></div>
-<div id="populateStreetName"></div>
-<div id="populateCity"></div>
-<div id="populateState"></div>
-<div id="populateZip"></div>
-<div id="populateCountry"></div>-->
+
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/multiple-select.js"></script>
+  <!-- <script type="text/javascript" src="js/multi-select.jquery.js"></script> -->
 </body>
 </html>
