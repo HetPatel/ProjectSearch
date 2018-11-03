@@ -1,4 +1,4 @@
-var autocomplete = new SelectPure(".autocomplete-select", {
+ var autocomplete = new SelectPure(".autocomplete-select", {
   options: [
     {
       label: "Full Time",
